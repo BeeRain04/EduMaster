@@ -1,0 +1,197 @@
+/* === Overlay === */
+.cr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* === Box === */
+.cr-box {
+  width: 700px;
+  max-width: 94%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 28px; /* đều hai bên */
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* === Close === */
+.cr-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #475569;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cr-close:hover {
+  transform: scale(1.15);
+  color: #0f172a;
+}
+
+/* === Title === */
+.cr-title {
+  color: #0f172a;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* === Form layout === */
+.cr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* === Input === */
+.cr-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-sizing: border-box;
+  font-size: 15px;
+  background: #f9fafb;
+  transition: 0.25s;
+}
+
+.cr-input:focus {
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+/* password wrapper (nằm chung với input) */
+.password-field {
+  position: relative;
+  display: block;
+}
+.password-field .cr-input {
+  padding-right: 48px; /* chừa chỗ cho icon */
+}
+
+/* toggle icon */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #64748b;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background .14s, color .14s, transform .14s;
+}
+.toggle-password:hover {
+  color: #1d4ed8;
+  background: rgba(37,99,235,0.06);
+  transform: scale(1.05) translateY(-50%);
+}
+
+/* === Course grid === */
+.cr-course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.cr-course-item {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 2px solid transparent;
+  transition: 0.25s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.cr-course-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.cr-course-item.selected {
+  background: #e8f1ff;
+  border-color: #2563eb;
+}
+
+/* === Meta info === */
+.cr-meta {
+  font-size: 13px;
+  color: #475569;
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+}
+
+/* === Payment === */
+.cr-payment {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cr-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #334155;
+  font-size: 15px;
+}
+
+/* === Submit === */
+.cr-submit {
+  background: #2563eb;
+  color: #fff;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cr-submit:hover {
+  background: #1e4fc2;
+}
+
+/* === Message === */
+.cr-message {
+  margin-top: 12px;
+  padding: 12px;
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #065f46;
+  text-align: center;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

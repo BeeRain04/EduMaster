@@ -1,0 +1,145 @@
+.myCourses {
+  padding: 60px 12%;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.course-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.course-header:hover {
+  background: #f1f5f9;
+}
+
+.course-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.course-icon {
+  color: #3b82f6;
+  width: 28px;
+  height: 28px;
+}
+
+.course-info h3 {
+  font-size: 1.3rem;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.course-info p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.dropdown-icon {
+  color: #64748b;
+  transition: transform 0.25s ease;
+}
+
+.exam-list {
+  background: #f8fafc;
+  padding: 20px 30px;
+  border-top: 1px solid #e2e8f0;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.exam-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.exam-item:last-child {
+  border-bottom: none;
+}
+
+.exam-name {
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.start-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.start-btn:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+.no-exams {
+  color: #94a3b8;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.no-courses {
+  text-align: center;
+  color: #475569;
+  font-size: 1.05rem;
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

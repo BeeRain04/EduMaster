@@ -1,0 +1,111 @@
+.user-management-page {
+  padding: 40px;
+  font-family: "Inter", sans-serif;
+  background: #f7f9fb;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.user-management-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  max-width: 1200px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.user-management-container h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 950px; /* đảm bảo không bị co cột */
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.user-table th {
+  background: #f3f6fa;
+  font-weight: 600;
+  color: #444;
+}
+
+.user-table tr:hover {
+  background: #f9fbfd;
+  transition: background 0.2s ease;
+}
+
+.status-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  transition: 0.2s ease;
+}
+
+.status-select:hover {
+  box-shadow: 0 0 0 2px #e0e7ff;
+}
+
+.status-select .dropdown-status {
+  width: 100%;
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 9px 32px 9px 12px;
+  font-size: 14px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.status-select .icon {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  color: #666;
+}
+
+/* Màu nền theo trạng thái */
+.status-select.pending {
+  background: #fff8e1;
+  border-color: #ffca28;
+}
+.status-select.approved {
+  background: #e8f5e9;
+  border-color: #66bb6a;
+}
+.status-select.cancelled {
+  background: #ffebee;
+  border-color: #ef5350;
+}
+
+.loading {
+  text-align: center;
+  font-size: 17px;
+  color: #666;
+  padding-top: 60px;
+}

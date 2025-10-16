@@ -1,0 +1,124 @@
+.exam-admin {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+.exam-admin h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1e3a8a;
+}
+
+.exam-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.exam-form input,
+.exam-form textarea,
+.exam-form select {
+  padding: 10px 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.exam-form input:focus,
+.exam-form textarea:focus,
+.exam-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.exam-form .form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.exam-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.exam-form .actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.exam-form button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  background: #2563eb;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+.exam-form button:hover {
+  background: #1e40af;
+}
+
+.exam-form .danger {
+  background: #dc2626;
+}
+
+.exam-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.exam-table th,
+.exam-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.exam-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #111827;
+}
+
+.exam-table tr:hover {
+  background: #f9fafb;
+}
+
+.exam-table button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+.exam-table button:hover {
+  opacity: 0.9;
+}
+
+.exam-table button.danger {
+  background: #dc2626;
+  color: white;
+}

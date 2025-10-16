@@ -1,0 +1,334 @@
+/* 🌍 Tổng thể */
+.home-wrapper {
+  font-family: "Inter", sans-serif;
+  color: #0f172a;
+}
+
+/* 🌟 Hero Section (giữ hover đẹp cho các nút) */
+.home-hero-section {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  animation: fadeIn 1s ease;
+}
+
+.home-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.home-hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  line-height: 1.05;
+}
+
+.home-hero-content span {
+  color: #fde047;
+}
+
+.home-hero-content p {
+  font-size: 1.05rem;
+  margin-bottom: 26px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* Hero buttons wrapper */
+.home-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Nút chính — giữ nguyên hiệu ứng "vàng" */
+.home-btn-primary,
+.home-btn-outline,
+.home-btn-gradient {
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: none;
+}
+
+/* Vàng nổi bật (Học thử) — giữ hover từ bản cũ */
+.home-btn-primary {
+  background: #fde047;
+  color: #1e3a8a;
+  box-shadow: 0 6px 18px rgba(250, 204, 71, 0.18);
+}
+.home-btn-primary:hover {
+  background: #facc15;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(250, 204, 71, 0.28);
+}
+
+/* Viền trắng (Đăng ký) — giữ hover từ bản cũ */
+.home-btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.95);
+  color: #fff;
+}
+.home-btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+/* Gradient nút đăng ký trong card / course */
+.home-btn-gradient {
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  color: #fff;
+}
+.home-btn-gradient:hover {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+}
+
+/* 💡 Giới thiệu */
+.home-about-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.home-about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.home-about-section p {
+  max-width: 720px;
+  margin: 0 auto 34px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Feature cards — giữ hover lift */
+.home-about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.home-feature-card {
+  background: white;
+  padding: 28px 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.32s cubic-bezier(.2,.8,.2,1), box-shadow 0.32s;
+  cursor: default;
+}
+.home-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(18,52,86,0.12);
+}
+.home-feature-icon {
+  font-size: 2rem;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+/* 🏆 Thành tựu */
+.home-achievement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 70px 20px;
+  background: linear-gradient(90deg, #1e40af, #2563eb);
+  color: white;
+  flex-wrap: wrap;
+}
+
+.home-achievement-item {
+  text-align: center;
+  transition: transform 0.25s;
+  min-width: 110px;
+}
+.home-achievement-item:hover { transform: scale(1.06); }
+.home-achievement-item h3 { font-size: 1.9rem; margin: 0; font-weight: 700; }
+.home-achievement-item p { margin: 6px 0 0; opacity: 0.95; }
+
+/* 🎓 Khóa học nổi bật */
+.home-courses-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f8fafc;
+}
+
+.home-courses-section h2 { font-size: 2rem; margin-bottom: 36px; }
+
+.home-course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.home-course-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.home-course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(14, 60, 120, 0.08);
+}
+
+.home-course-card h3 { margin-bottom: 10px; font-size: 1.15rem; color: #0f172a; }
+.home-course-info { display: flex; justify-content: space-between; color: #475569; margin-bottom: 12px; font-size: 0.95rem; }
+
+/* nút đăng ký trong card (giữ gradient + hover) */
+.home-course-card .home-btn-gradient { margin-top: 12px; }
+
+/* nút xem thêm */
+.home-load-more-btn {
+  margin-top: 30px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s;
+}
+.home-load-more-btn:hover { background: #1d4ed8; transform: translateY(-3px); }
+
+/* 💬 Cảm nhận học viên */
+/* giữ hiệu ứng flip card nhưng sửa stars thành ngang */
+.home-feedback {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f1f5f9;
+}
+
+.home-feedback h2 { font-size: 2rem; margin-bottom: 30px; }
+
+/* container list */
+.home-feedback-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* mỗi thẻ review */
+.home-feedback-card {
+  perspective: 1000px;
+  width: 220px;
+  height: 160px;
+}
+
+/* inner giữ transform 3d */
+.home-feedback-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* lật khi hover */
+.home-feedback-card:hover .home-feedback-inner {
+  transform: rotateY(180deg);
+}
+
+/* MẶT TRƯỚC & SAU: dùng block & text-align center để stars nằm ngang */
+.home-feedback-front,
+.home-feedback-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  padding: 16px;
+  box-sizing: border-box;
+  display: block;            /* <-- đổi sang block thay vì flex-column */
+  text-align: center;       /* stars và text căn giữa */
+}
+
+/* front style */
+.home-feedback-front {
+  background: white;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  color: #0f172a;
+}
+
+/* back style */
+.home-feedback-back {
+  background: #2563eb;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* Stars: hiển thị inline và nằm ngang */
+.home-star {
+  color: #facc15;
+  font-size: 18px;
+  display: inline-block;    /* sao nằm ngang */
+  margin: 0 4px 8px 4px;
+  vertical-align: middle;
+}
+
+/* tiêu đề tên người */
+.home-feedback-front h4,
+.home-feedback-back p {
+  margin: 8px 0 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+/* back content nhỏ gọn */
+.home-feedback-back p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+/* CTA */
+.home-cta-section {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.home-cta-section h2 { font-size: 2rem; margin-bottom: 10px; }
+.home-cta-section p { margin-bottom: 30px; opacity: 0.95; }
+
+/* ✨ Hiệu ứng reveal khi scroll */
+.home-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.home-active { opacity: 1; transform: translateY(0); }
+
+/* Animation fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive tweaks --- */
+@media (max-width: 900px) {
+  .home-hero-content h1 { font-size: 2.2rem; }
+  .home-course-list { gap: 18px; }
+}
+@media (max-width: 520px) {
+  .home-hero-content { padding: 0 12px; }
+  .home-hero-content h1 { font-size: 1.7rem; }
+  .home-course-list { grid-template-columns: 1fr; }
+}
