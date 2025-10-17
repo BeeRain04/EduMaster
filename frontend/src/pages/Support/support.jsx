@@ -36,12 +36,12 @@ const Support = () => {
     };
 
     const faqs = [
-        { q: "Làm thế nào để bắt đầu một bài thi?", a: "Bạn có thể tra cứu đề bạn muốn làm → chọn đề thi → bấm 'Làm bài'." },
+        { q: "Sử dụng web như thế nào?", a: "EduMaster cho bạn học thử trước khi đăng kí mua khóa học." },
         { q: "Tôi có thể xem lại kết quả sau khi nộp bài không?", a: "Có! Vào mục 'Lịch sử làm bài' để xem chi tiết kết quả." },
-        { q: "Làm thế nào để xem được lịch sử bài làm?", a: "Bạn vào trang đăng nhập → chọn tạo tài khoản hoặc đăng nhập bằng Google." },
+        { q: "Mua khóa học như thế nào?", a: "Trên homepage của EduMaster có nút đăng kí khóa học bạn có thể nhấn chọn." },
         { q: "Có thể làm lại bài thi nhiều lần không?", a: "Có. Làm nhiều lần sẽ giúp bạn đạt điểm cao hơn" },
-        { q: "Nếu không đăng nhập thì có làm bài được không?", a: "Hoàn toàn có thể! Quizzy không bắt buộc bạn đăng nhập." },
-        { q: "Tôi có thể gửi email để hỗ trợ không?", a: "Hoàn toàn có thể! Quizzy hỗ trợ bạn hết mình (chỉ trong giờ làm việc)." },
+        { q: "Sau khi mua khóa học xong sẽ sử dụng như thế nào?", a: "Sau khi nhận được email duyệt mua khóa học thành công thì bạn phải đăng nhập vào hệ thống" },
+        { q: "Sẽ có những khóa học về gì?", a: "EduMaster có những khóa học trắc nghiệm về lập trình." },
     ];
 
     return (
@@ -110,9 +110,9 @@ const Support = () => {
                     <FaEnvelope className="support-icon contact-icon" />
                     <h2>Liên hệ</h2>
                     <div className="contact-info">
-                        <p>📧 Email: support@quizzy.com</p>
+                        <p>📧 Email: support@edumaster.com</p>
                         <p>📱 Zalo: 0123 456 789</p>
-                        <p>💬 Facebook: fb.com/quizzy</p>
+                        <p>💬 Facebook: fb.com/EduMaster</p>
                         <p>📍 Địa chỉ: Đồng Nai</p>
                         <p>🕐 Giờ làm việc: Thứ 2 - Thứ 6 (8:00 - 21:00)</p>
                     </div>
