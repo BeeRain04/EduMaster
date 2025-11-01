@@ -129,8 +129,8 @@ export default function QuestionManagement() {
                           form.type === "single"
                             ? j === i
                             : j === i
-                            ? e.target.checked
-                            : o.isCorrect
+                              ? e.target.checked
+                              : o.isCorrect
                       }));
                       setForm({ ...form, options: updated });
                     }}
@@ -181,6 +181,120 @@ export default function QuestionManagement() {
             >
               ➕ Thêm cặp
             </button>
+          </div>
+        );
+      case "matrix":
+        return (
+          <div className="field-group">
+            <label>Ma trận câu hỏi:</label>
+
+            <div className="matrix-section">
+              <div>
+                <p><strong>Hàng (Rows):</strong></p>
+                {form.matrix.rows.map((r, i) => (
+                  <input
+                    key={i}
+                    value={r}
+                    onChange={(e) => {
+                      const rows = [...form.matrix.rows];
+                      rows[i] = e.target.value;
+                      setForm({ ...form, matrix: { ...form.matrix, rows } });
+                    }}
+                    placeholder={`Hàng ${i + 1}`}
+                  />
+                ))}
+                <button
+                  type="button"
+                  className="add-btn"
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      matrix: {
+                        ...form.matrix,
+                        rows: [...form.matrix.rows, ""],
+                        correct: [
+                          ...form.matrix.correct,
+                          Array(form.matrix.columns.length).fill(false),
+                        ],
+                      },
+                    })
+                  }
+                >
+                  ➕ Thêm hàng
+                </button>
+              </div>
+
+              <div>
+                <p><strong>Cột (Columns):</strong></p>
+                {form.matrix.columns.map((c, i) => (
+                  <input
+                    key={i}
+                    value={c}
+                    onChange={(e) => {
+                      const columns = [...form.matrix.columns];
+                      columns[i] = e.target.value;
+                      const correct = form.matrix.correct.map((row) => {
+                        const newRow = [...row];
+                        newRow[i] = newRow[i] || false;
+                        return newRow;
+                      });
+                      setForm({
+                        ...form,
+                        matrix: { ...form.matrix, columns, correct },
+                      });
+                    }}
+                    placeholder={`Cột ${i + 1}`}
+                  />
+                ))}
+                <button
+                  type="button"
+                  className="add-btn"
+                  onClick={() => {
+                    const newCols = [...form.matrix.columns, ""];
+                    const newCorrect = form.matrix.correct.map((row) => [...row, false]);
+                    setForm({
+                      ...form,
+                      matrix: { ...form.matrix, columns: newCols, correct: newCorrect },
+                    });
+                  }}
+                >
+                  ➕ Thêm cột
+                </button>
+              </div>
+            </div>
+
+            <div className="matrix-grid">
+              <div className="matrix-header">
+                <span></span>
+                {form.matrix.columns.map((col, j) => (
+                  <span key={j} className="matrix-col-header">{col || `Cột ${j + 1}`}</span>
+                ))}
+              </div>
+              {form.matrix.rows.map((row, i) => (
+                <div key={i} className="matrix-row">
+                  <span className="matrix-row-header">{row || `Hàng ${i + 1}`}</span>
+                  {form.matrix.columns.map((_, j) => (
+                    <label key={j} className="matrix-cell">
+                      <input
+                        type="checkbox"
+                        checked={form.matrix.correct[i][j]}
+                        onChange={(e) => {
+                          const updated = form.matrix.correct.map((r, ri) =>
+                            ri === i
+                              ? r.map((cell, cj) => (cj === j ? e.target.checked : cell))
+                              : r
+                          );
+                          setForm({
+                            ...form,
+                            matrix: { ...form.matrix, correct: updated },
+                          });
+                        }}
+                      />
+                    </label>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         );
 
@@ -242,37 +356,115 @@ export default function QuestionManagement() {
       case "drag-drop":
         return (
           <div className="field-group">
-            <label>Kéo thả:</label>
+            <label>Kéo & Thả:</label>
+
             <div className="drag-drop-section">
               <div>
-                <p>Draggables:</p>
+                <p><strong>Draggables (kéo):</strong></p>
                 {form.draggables.map((d, i) => (
-                  <input
-                    key={i}
-                    value={d}
-                    onChange={(e) => {
-                      const updated = [...form.draggables];
-                      updated[i] = e.target.value;
-                      setForm({ ...form, draggables: updated });
-                    }}
-                    placeholder={`Draggable ${i + 1}`}
-                  />
+                  <div key={i} className="pair-row">
+                    <input
+                      value={d}
+                      onChange={(e) => {
+                        const updated = [...form.draggables];
+                        updated[i] = e.target.value;
+                        setForm({ ...form, draggables: updated });
+                      }}
+                      placeholder={`Draggable ${i + 1}`}
+                    />
+                  </div>
                 ))}
+                <button
+                  type="button"
+                  className="add-btn"
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      draggables: [...form.draggables, ""],
+                    })
+                  }
+                >
+                  ➕ Thêm draggable
+                </button>
               </div>
+
               <div>
-                <p>Dropzones:</p>
+                <p><strong>Dropzones (thả):</strong></p>
                 {form.dropzones.map((d, i) => (
-                  <input
-                    key={i}
-                    value={d}
-                    onChange={(e) => {
-                      const updated = [...form.dropzones];
-                      updated[i] = e.target.value;
-                      setForm({ ...form, dropzones: updated });
-                    }}
-                    placeholder={`Dropzone ${i + 1}`}
-                  />
+                  <div key={i} className="pair-row">
+                    <input
+                      value={d}
+                      onChange={(e) => {
+                        const updated = [...form.dropzones];
+                        updated[i] = e.target.value;
+                        setForm({ ...form, dropzones: updated });
+                      }}
+                      placeholder={`Dropzone ${i + 1}`}
+                    />
+                  </div>
                 ))}
+                <button
+                  type="button"
+                  className="add-btn"
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      dropzones: [...form.dropzones, ""],
+                    })
+                  }
+                >
+                  ➕ Thêm dropzone
+                </button>
+              </div>
+
+              <div>
+                <p><strong>Các cặp đúng:</strong></p>
+                {form.correctMapping.map((m, i) => (
+                  <div key={i} className="pair-row">
+                    <select
+                      value={m.draggable}
+                      onChange={(e) => {
+                        const updated = [...form.correctMapping];
+                        updated[i].draggable = e.target.value;
+                        setForm({ ...form, correctMapping: updated });
+                      }}
+                    >
+                      <option value="">Chọn draggable</option>
+                      {form.draggables.map((d, idx) => (
+                        <option key={idx} value={d}>{d}</option>
+                      ))}
+                    </select>
+                    <span>➡️</span>
+                    <select
+                      value={m.dropzone}
+                      onChange={(e) => {
+                        const updated = [...form.correctMapping];
+                        updated[i].dropzone = e.target.value;
+                        setForm({ ...form, correctMapping: updated });
+                      }}
+                    >
+                      <option value="">Chọn dropzone</option>
+                      {form.dropzones.map((d, idx) => (
+                        <option key={idx} value={d}>{d}</option>
+                      ))}
+                    </select>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="add-btn"
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      correctMapping: [
+                        ...form.correctMapping,
+                        { draggable: "", dropzone: "" },
+                      ],
+                    })
+                  }
+                >
+                  ➕ Thêm cặp đúng
+                </button>
               </div>
             </div>
           </div>
@@ -312,6 +504,7 @@ export default function QuestionManagement() {
           <option value="single">SingleChoice</option>
           <option value="multi">MultiChoice</option>
           <option value="drop-match">Drop-match</option>
+          <option value="matrix">Matrix</option>
           <option value="image-area">Image-area</option>
           <option value="drag-drop">Drag-drop</option>
         </select>

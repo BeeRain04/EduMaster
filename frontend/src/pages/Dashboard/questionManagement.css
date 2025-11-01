@@ -121,3 +121,36 @@
   gap: 10px;
   margin-top: 10px;
 }
+.matrix-grid {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.matrix-header,
+.matrix-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+}
+
+.matrix-header span,
+.matrix-row span {
+  padding: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.matrix-cell {
+  display: flex;
+  justify-content: center;
+  padding: 6px;
+}
+
+.matrix-section {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+

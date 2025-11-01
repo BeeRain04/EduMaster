@@ -383,10 +383,10 @@ exports.cancelCourse = async (req, res) => {
     // Gửi mail thông báo
     await sendEmail(
       user.email,
-      `❌ Khóa học "${purchased.courseId.name}" đã bị hủy`,
+      `❌ Khóa học "${purchased.courseId.name}" đã hết hạn`,
       `
         <div style="font-family:Arial,sans-serif">
-          <h3 style="color:#e63946;">Khóa học bị hủy</h3>
+          <h3 style="color:#e63946;">Khóa học đã hết hạn</h3>
           <p>Xin chào <b>${user.name}</b>,</p>
           <p>Khóa học <b>${purchased.courseId.name}</b> của bạn đã bị hủy và không còn khả dụng.</p>
           <p>Nếu bạn cho rằng đây là nhầm lẫn, vui lòng liên hệ bộ phận hỗ trợ.</p>

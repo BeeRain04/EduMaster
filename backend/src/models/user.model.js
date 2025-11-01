@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const purchasedCourseSchema = new mongoose.Schema({
   courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
   startDate: { type: Date, default: Date.now },     // ngày bắt đầu học
-  endDate: { type: Date, required: true },           // ngày hết hạn gói học
+  endDate: { type: Date, default: Date.now },           // ngày hết hạn gói học
   approved: { type: Boolean, default: false },       // admin duyệt mua
   paymentStatus: { 
     type: String, 
