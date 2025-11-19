@@ -9,6 +9,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Dashboard from "./pages/Dashboard/dashboard";
 import MyCourses from "./pages/MyCourses/myCourses";
 import ExamHistory from "./pages/ExamHistory/examHistory";
+import Login from "./components/Login/authPopup";
 import "./App.css";
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/exams/:id" element={<ExamDetail />} />
           <Route
             path="/dashboard"

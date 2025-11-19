@@ -50,7 +50,6 @@ exports.list = async (req, res) => {
 
     const list = await Exam.find(filter)
       .populate('courseId', 'name price durationDays')
-      .select('-questionIds') // ẩn questionIds để list nhẹ
       .sort({ createdAt: -1 });
 
     res.json(list);

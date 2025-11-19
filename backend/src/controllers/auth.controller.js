@@ -223,6 +223,11 @@ exports.requestCourse = async (req, res) => {
     if (!email || !username || !password || !courseId)
       return res.status(400).json({ message: "Thiếu thông tin cần thiết." });
 
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!gmailRegex.test(email)) {
+      return res.status(400).json({ message: "Chỉ chấp nhận email @gmail.com." });
+    }
+
     // Validate mật khẩu user nhập
     if (password.length < 6 || !/[A-Z]/.test(password) || !/[0-9]/.test(password))
       return res.status(400).json({
@@ -351,7 +356,24 @@ exports.approveCourse = async (req, res) => {
       <p>Xin chào ${user.name},</p>
       <p>Khóa học <b>${course.name}</b> của bạn đã được duyệt thành công.</p>
       <p>Bạn có thể đăng nhập vào hệ thống để bắt đầu học.</p>
-    `;
+    <a 
+    href="http://localhost:5173/login" 
+    style="
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 12px;
+    "
+  >
+    Bắt đầu học
+  </a>
+
+  <p style="margin-top: 20px;">Trân trọng,<br>Đội ngũ hỗ trợ</p>
+`;
 
     await sendEmail(user.email, subject, html);
 

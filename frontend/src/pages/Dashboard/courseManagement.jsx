@@ -6,13 +6,16 @@ export default function CourseManagement() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
+  const token = sessionStorage.getItem("token");
+
   const [formData, setFormData] = useState({
     name: "",
-    price: "",
-    durationDays: "",
+    price: 0,
+    durationDays: 30,
     isTrialAvailable: false,
     active: true,
   });
+
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -33,6 +36,7 @@ export default function CourseManagement() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
@@ -41,39 +45,72 @@ export default function CourseManagement() {
 
   const handleSave = async () => {
     if (!formData.name.trim()) return alert("⚠️ Tên khóa học không được để trống");
+
+    // Ép kiểu số CHÍNH XÁC tại đây
+    const dataToSend = {
+      ...formData,
+      price: Number(formData.price),
+      durationDays: Number(formData.durationDays),
+    };
+
     try {
       if (editing) {
+        // UPDATE
         const res = await axios.put(
           `http://localhost:5000/api/courses/${editing._id}`,
-          formData
+          dataToSend,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
+
         setCourses(courses.map((c) => (c._id === editing._id ? res.data : c)));
       } else {
-        const res = await axios.post("http://localhost:5000/api/courses", formData);
+        // CREATE
+        const res = await axios.post(
+          "http://localhost:5000/api/courses",
+          dataToSend,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
         setCourses([...courses, res.data]);
       }
+
+      // Reset form
       setFormData({
         name: "",
         price: 0,
         durationDays: 30,
-        isTrialAvailable: true,
+        isTrialAvailable: false,
         active: true,
       });
       setEditing(null);
-    } catch {
+
+    } catch (err) {
+      console.log(err);
       alert("❌ Không thể lưu khóa học");
     }
   };
 
   const handleEdit = (course) => {
     setEditing(course);
-    setFormData(course);
+    setFormData({
+      ...course,
+      price: Number(course.price),
+      durationDays: Number(course.durationDays),
+    });
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm("Bạn có chắc muốn xóa khóa học này?")) return;
+
     try {
-      await axios.delete(`http://localhost:5000/api/courses/${id}`);
+      await axios.delete(`http://localhost:5000/api/courses/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
       setCourses(courses.filter((c) => c._id !== id));
     } catch {
       alert("❌ Không thể xóa khóa học");
@@ -105,20 +142,25 @@ export default function CourseManagement() {
           value={formData.name}
           onChange={handleChange}
         />
+
         <input
           type="number"
           name="price"
+          min="0"
           placeholder="Giá (0 = miễn phí)"
           value={formData.price}
           onChange={handleChange}
         />
+
         <input
           type="number"
           name="durationDays"
+          min="1"
           placeholder="Số ngày học"
           value={formData.durationDays}
           onChange={handleChange}
         />
+
         <label className="toggle">
           <input
             type="checkbox"
@@ -128,6 +170,7 @@ export default function CourseManagement() {
           />
           Cho học thử
         </label>
+
         <label className="toggle">
           <input
             type="checkbox"
@@ -137,10 +180,12 @@ export default function CourseManagement() {
           />
           Kích hoạt
         </label>
+
         <div className="form-buttons">
           <button className="save-btn" onClick={handleSave}>
             {editing ? "💾 Cập nhật" : "➕ Thêm mới"}
           </button>
+
           {editing && (
             <button
               className="cancel-btn"
@@ -150,7 +195,7 @@ export default function CourseManagement() {
                   name: "",
                   price: 0,
                   durationDays: 30,
-                  isTrialAvailable: true,
+                  isTrialAvailable: false,
                   active: true,
                 });
               }}
@@ -175,11 +220,13 @@ export default function CourseManagement() {
                   {c.active ? "Đang mở" : "Ngưng bán"}
                 </span>
               </div>
+
               <div className="course-body">
                 <p>💰 Giá: {c.price === 0 ? "Miễn phí" : `${c.price}đ`}</p>
                 <p>📅 Thời hạn: {c.durationDays} ngày</p>
                 <p>🎓 Học thử: {c.isTrialAvailable ? "Có" : "Không"}</p>
               </div>
+
               <div className="course-actions">
                 <button className="edit-btn" onClick={() => handleEdit(c)}>
                   ✏️ Sửa

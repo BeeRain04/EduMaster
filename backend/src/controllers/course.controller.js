@@ -10,6 +10,21 @@ exports.createCourse = async (req, res) => {
 
     const { name, price, durationDays, isTrialAvailable, active } = req.body;
 
+    // Validate
+    if (!name || !name.trim()) {
+      return res.status(400).json({ error: "Tên khóa học không được để trống." });
+    }
+
+    if (price < 0) {
+      return res.status(400).json({ error: "Giá khóa học không được nhỏ hơn 0." });
+    }
+
+    if (durationDays <= 0) {
+      return res
+        .status(400)
+        .json({ error: "Thời hạn khóa học phải lớn hơn 0 ngày." });
+    }
+
     const course = await Course.create({
       name,
       price,
@@ -23,6 +38,7 @@ exports.createCourse = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
 
 // 🟢 Lấy tất cả khóa học (kèm danh sách đề trong mỗi khóa)
 exports.getAllCourses = async (req, res) => {

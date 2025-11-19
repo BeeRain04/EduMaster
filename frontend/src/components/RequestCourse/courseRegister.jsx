@@ -88,15 +88,16 @@ export default function CourseRegister({ courseId = null, onClose }) {
           </div>
 
           <label className="cr-label">Họ và tên</label>
-          <input className="cr-input" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input className="cr-input" placeholder="Nhập họ và tên của bạn" value={username} onChange={(e) => setUsername(e.target.value)} required />
 
           <label className="cr-label">Email</label>
-          <input className="cr-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input className="cr-input" type="email" placeholder="Vui lòng nhập email đang sử dụng"value={email} onChange={(e) => setEmail(e.target.value)} required />
 
           <label className="cr-label">Password</label>
           <div className="password-field">
             <input
               className="cr-input"
+              placeholder="Nhập mật khẩu"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}

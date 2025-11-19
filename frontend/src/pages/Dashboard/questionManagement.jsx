@@ -7,6 +7,7 @@ export default function QuestionManagement() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
   const [search, setSearch] = useState("");
+  const token = sessionStorage.getItem("token");
 
   const [form, setForm] = useState({
     content: "",
@@ -37,6 +38,48 @@ export default function QuestionManagement() {
     }
   };
 
+  // Lấy dữ liệu theo type trước khi gửi
+  const getPayloadByType = (form) => {
+    switch (form.type) {
+      case "single":
+      case "multi":
+        return {
+          content: form.content,
+          type: form.type,
+          options: form.options,
+        };
+      case "drop-match":
+        return {
+          content: form.content,
+          type: form.type,
+          pairs: form.pairs,
+        };
+      case "matrix":
+        return {
+          content: form.content,
+          type: form.type,
+          matrix: form.matrix,
+        };
+      case "image-area":
+        return {
+          content: form.content,
+          type: form.type,
+          imageUrl: form.imageUrl,
+          areas: form.areas,
+        };
+      case "drag-drop":
+        return {
+          content: form.content,
+          type: form.type,
+          draggables: form.draggables,
+          dropzones: form.dropzones,
+          correctMapping: form.correctMapping,
+        };
+      default:
+        return form;
+    }
+  };
+
   // Handlers
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -54,14 +97,19 @@ export default function QuestionManagement() {
   const handleSave = async () => {
     if (!form.content.trim()) return alert("⚠️ Nội dung không được trống");
     try {
+      const payload = getPayloadByType(form);
       if (editing) {
         const res = await axios.put(
           `http://localhost:5000/api/questions/${editing._id}`,
-          form
+          payload, {
+          headers: { Authorization: `Bearer ${token}` },
+        }
         );
         setQuestions(questions.map((q) => (q._id === editing._id ? res.data : q)));
       } else {
-        const res = await axios.post("http://localhost:5000/api/questions", form);
+        const res = await axios.post("http://localhost:5000/api/questions", payload, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setQuestions([...questions, res.data]);
       }
       resetForm();
@@ -73,7 +121,9 @@ export default function QuestionManagement() {
   const handleDelete = async (id) => {
     if (!window.confirm("Bạn có chắc muốn xóa câu hỏi này?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/questions/${id}`);
+      await axios.delete(`http://localhost:5000/api/questions/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setQuestions(questions.filter((q) => q._id !== id));
     } catch {
       alert("❌ Không thể xóa câu hỏi");
